@@ -1,8 +1,10 @@
 .report-list {
-    margin: 20px;
+    margin: auto; /* İçeriği sayfanın ortasına hizalar */
     padding: 20px;
     border-radius: 8px;
     background-color: #f5f5f5;
+    width: 90%; /* Genişlik ayarlayabilirsiniz */
+    max-width: 800px; /* Max genişlik ayarlayabilirsiniz */
   }
   
   .report-item {
@@ -12,7 +14,8 @@
     border-radius: 4px;
   }
   
-  label, input {
+  label,
+  input {
     margin: 10px 0;
     display: block;
   }
@@ -28,4 +31,3 @@
   button:hover {
     opacity: 0.8;
   }
-  
