@@ -67,6 +67,7 @@
 }
 
 .appointment-update-form .form-group label {
+    diplay: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
