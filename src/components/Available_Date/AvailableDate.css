@@ -7,8 +7,6 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    display: flex; /* İçeriği hizalamak için */
-    justify-content: center; /* İçeriği hizalamak için */
 }
 
 .available-date-list-container h2 {
@@ -19,6 +17,7 @@
 .available-date-table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 15px; /* İçeriği alt alta yerleştirmek için */
 }
 
 .available-date-table th,
@@ -59,6 +58,7 @@
     max-width: 500px;
     padding: 20px;
     border: 1px solid #ccc;
+    margin: auto; /* Formu ortalamak için */
 }
 
 .available-date-update-form .form-group {
@@ -83,18 +83,3 @@
     border: 1px solid #ddd;
     border-radius: 4px;
 }
-
-.available-date-table td:nth-child(1) {
-    width: 5%;
-}
-
-.available-date-table td:nth-child(2),
-.available-date-table td:nth-child(3) {
-    width: 15%;
-}
-
-.available-date-table td:nth-child(4),
-.available-date-table td:nth-child(6) {
-    width: 10%;
-}
-
