@@ -4,7 +4,7 @@
     background-color: #fff;
     width: 90%;
     max-width: 1150px;
-    text-align: start; /* İçeriği ortalamak için */
+    text-align: center;
 }
 
 .appointment-container h2 {
@@ -15,6 +15,7 @@
 .appointment-table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 15px;
 }
 
 .appointment-table th,
@@ -39,7 +40,7 @@
 .appointment-container button {
     padding: 10px;
     margin: 5px;
-    border: 1px solid #2D9596; /* Buton kenar rengi */
+    border: 1px solid #2D9596;
     border-radius: 4px;
     cursor: pointer;
     background-color: #2D9596;
@@ -47,15 +48,16 @@
 }
 
 .appointment-container button:hover {
-    background-color: #1E6668; /* Buton hover rengi */
+    background-color: #1E6668;
 }
 
 .appointment-update-form {
     width: 90%;
     max-width: 500px;
-    margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
+    margin: auto;
+    text-align: start; /* Formu sola hizalamak için */
 }
 
 .appointment-update-form .form-group {
@@ -93,9 +95,4 @@
 .appointment-table td:nth-child(4),
 .appointment-table td:nth-child(6) {
     width: 10%;
-}
-
-.form-group {
-    display: flex;
-    align-items: start;
 }
