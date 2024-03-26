@@ -94,3 +94,8 @@
 .appointment-table td:nth-child(6) {
     width: 10%;
 }
+
+.form-group {
+    display: flex;
+    align-items: start;
+}
