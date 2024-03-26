@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AvailableDateService from '../../services/AvailableDateService';
-import './AvailableDate.css'; // Yeni CSS dosyasını dahil edin
+import './AvailableDateList.css'; // Yeni CSS dosyasını dahil edin
 
 function AvailableDateList() {
   const [availableDates, setAvailableDates] = useState([]);
@@ -65,14 +65,14 @@ function AvailableDateList() {
           onChange={(e) => setNewAvailableDate({ ...newAvailableDate, doctorId: e.target.value })}
           placeholder="Doctor ID"
         />
-        <button className="add-button" onClick={handleCreate}>Add New Available Date</button> {/* Class adını değiştirin */}
+        <button className="add-new-available-date-button" onClick={handleCreate}>Add New Available Date</button> {/* Class adını değiştirin */}
       </div>
       <ul className="available-date-list"> {/* Class adını değiştirin */}
         {availableDates.map((date) => (
           <li key={date.id}>
             {date.availableDate} - Doctor ID: {date.doctorId}
-            <button className="edit-button" onClick={() => handleUpdate(date.id)}>Edit</button> {/* Class adını değiştirin */}
-            <button className="delete-button" onClick={() => handleDelete(date.id)}>Delete</button> {/* Class adını değiştirin */}
+            <button className="edit-available-date-button" onClick={() => handleUpdate(date.id)}>Edit</button> {/* Class adını değiştirin */}
+            <button className="delete-available-date-button" onClick={() => handleDelete(date.id)}>Delete</button> {/* Class adını değiştirin */}
           </li>
         ))}
       </ul>
