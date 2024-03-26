@@ -21,7 +21,15 @@ function AvailableDateList() {
         fetchDoctors();
     }, []);
 
-
+const fetchDates = async () => {
+        try {
+            const fetchedDates = await AvailableDateService.getAllDates();
+            setDates(fetchedDates);
+        } catch (error) {
+            console.error('Müsait günler alınırken bir hata oluştu:', error);
+            setDates([]); // Hata durumunda boş dizi atayarak hata yönetimi sağlanıyor.
+        }
+    };
 
 
     
@@ -70,7 +78,22 @@ function AvailableDateList() {
         }
     };
 
-
+const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('/api/v1/available_date/create-with-doctor', {
+                availableDate: newDate,
+                doctorId: doctorId,
+            });
+            console.log(response.data);
+            setNewDate('');
+            setDoctorId('');
+            // Optionally, refresh the list of dates
+            fetchDates();
+        } catch (error) {
+            console.error('Error creating available date', error);
+        }
+    };
     
 
     const handleEditClick = (date) => {
