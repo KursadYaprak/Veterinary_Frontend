@@ -78,22 +78,7 @@ function AvailableDateList() {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('/api/v1/available_date/create-with-doctor', {
-                availableDate: newDate,
-                doctorId: doctorId,
-            });
-            console.log(response.data);
-            setNewDate('');
-            setDoctorId('');
-            // Optionally, refresh the list of dates
-            fetchDates();
-        } catch (error) {
-            console.error('Error creating available date', error);
-        }
-    };
+
     
 
     const handleEditClick = (date) => {
