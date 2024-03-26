@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AvailableDateService from '../../services/AvailableDateService';
-import './AvailableDateList.css'; // Yeni CSS dosyasını dahil edin
+import './AvailableDate.css'; // Yeni CSS dosyasını dahil edin
 
 function AvailableDateList() {
   const [availableDates, setAvailableDates] = useState([]);
