@@ -1,5 +1,5 @@
 .appointment-container {
-    margin: 20px auto;
+    margin: auto;
     padding: 20px;
     background-color: #fff;
     width: 90%;
@@ -7,6 +7,8 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex; /* İçeriği hizalamak için */
+    justify-content: center; /* İçeriği hizalamak için */
 }
 
 .appointment-container h2 {
@@ -55,7 +57,6 @@
 .appointment-update-form {
     width: 90%;
     max-width: 500px;
-    margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
 }
