@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/api/v1/available_date';
+const BASE_URL = 'https://final-project-patika.onrender.com/api/v1/available_date';
 
 const AvailableDateService = {
   getAvailableDates: async () => {
