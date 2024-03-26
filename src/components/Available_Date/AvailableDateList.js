@@ -23,15 +23,15 @@ function AvailableDateList() {
 
 
 
-    const fetchDates = async () => {
-        try {
-            const fetchedDates = await AvailableDateService.getAllDates();
-            setDates(fetchedDates);
-        } catch (error) {
-            console.error('Müsait günler alınırken bir hata oluştu:', error);
-            setDates([]); // Hata durumunda boş dizi atayarak hata yönetimi sağlanıyor.
-        }
-    };
+const fetchDoctors = async () => {
+    try {
+        const response = await axios.get('/api/v1/doctor');
+        setDoctors(response.data);
+    } catch (error) {
+        console.error('Error fetching doctors', error);
+        // Burada hata durumunda kullanıcıya geri bildirim sağlayabiliriz
+    }
+};
     
 
   /*  const handleAddDate = async () => {
@@ -46,16 +46,16 @@ function AvailableDateList() {
         }
     }; */
 
-    const handleAddDate = async () => {
+const handleAddDate = async () => {
+    try {
+        await AvailableDateService.createDateWithDoctor(newDate, newDate.doctorId);
+        setNewDate({ date: '', doctorId: '' });
+        fetchDates();
+    } catch (error) {
+        console.error('Müsait gün eklenirken hata:', error);
+    }
+};
 
-        try {
-            await AvailableDateService.createDateWithDoctor(newDate, newDate.doctorId);
-            setNewDate({ date: '', doctorId: '' });
-            fetchDates();
-        } catch (error) {
-            console.error('Müsait gün eklenirken hata:', error);
-        }
-    };
     
 
     const handleUpdateDate = async () => {
@@ -78,22 +78,21 @@ function AvailableDateList() {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('/api/v1/available_date/create-with-doctor', {
-                availableDate: newDate,
-                doctorId: doctorId,
-            });
-            console.log(response.data);
-            setNewDate('');
-            setDoctorId('');
-            // Optionally, refresh the list of dates
-            fetchDates();
-        } catch (error) {
-            console.error('Error creating available date', error);
-        }
-    };
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post('/api/v1/available_date/create-with-doctor', {
+            availableDate: newDate,
+            doctorId: newDate.doctorId,
+        });
+        console.log(response.data);
+        setNewDate({ date: '', doctorId: '' });
+        // Optionally, refresh the list of dates
+        fetchDates();
+    } catch (error) {
+        console.error('Error creating available date', error);
+    }
+};
     
 
     const handleEditClick = (date) => {
@@ -172,8 +171,8 @@ function AvailableDateList() {
     />
     <input 
         type="number" 
-        value={doctorId} 
-        onChange={(e) => setDoctorId(e.target.value)}
+        value={newDate.doctorId} 
+        onChange={(e) => setNewDate({ ...newDate, doctorId: e.target.value })}
         placeholder="Doktor ID" 
     />
     <button className="btn btn-primary mx-2"  style={{ backgroundColor:  "green" }} onClick={handleAddDate}>Ekle</button>
