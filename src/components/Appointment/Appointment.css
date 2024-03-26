@@ -1,5 +1,5 @@
 .appointment-container {
-    margin: auto;
+    margin: auto; /* Sayfayı ortalamak için */
     padding: 20px;
     background-color: #fff;
     width: 90%;
@@ -50,9 +50,9 @@
 }
 
 .appointment-update-form {
-    width: 90%; /* Yeni form genişliği ayarı */
-    max-width: 500px; /* Formun maksimum genişliği */
-    margin: auto; /* Formun ortalanması */
+    width: 90%;
+    max-width: 500px;
+    margin: auto; /* Formu sayfanın ortasında tutmak için */
     padding: 20px;
     border: 1px solid #ccc;
 }
@@ -81,15 +81,15 @@
 }
 
 .appointment-table td:nth-child(1) {
-    width: 5%; /* ID */
+    width: 5%;
 }
 
 .appointment-table td:nth-child(2),
 .appointment-table td:nth-child(3) {
-    width: 15%; /* Tarih ve Saat */
+    width: 15%;
 }
 
 .appointment-table td:nth-child(4),
 .appointment-table td:nth-child(6) {
-    width: 10%; /* ID'ler */
+    width: 10%;
 }
