@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AvailableDateService from '../../services/AvailableDateService';
+import './AvailableDate.css';
 
 function AvailableDateList() {
   const [availableDates, setAvailableDates] = useState([]);
