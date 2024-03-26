@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AvailableDateService from '../../services/AvailableDateService';
+import './AvailableDateList.css'; // Stil dosyasını dahil edin
 
 function AvailableDateList() {
   const [availableDates, setAvailableDates] = useState([]);
@@ -50,7 +51,7 @@ function AvailableDateList() {
   };
 
   return (
-    <div>
+    <div className="doctor-list-container"> {/* Değiştirildi */}
       <h2>Available Dates</h2>
       <div>
         <input
@@ -64,17 +65,29 @@ function AvailableDateList() {
           onChange={(e) => setNewAvailableDate({ ...newAvailableDate, doctorId: e.target.value })}
           placeholder="Doctor ID"
         />
-        <button onClick={handleCreate}>Add New Available Date</button>
+        <button className="btn-primary mx-2" onClick={handleCreate}>Add New Available Date</button> {/* Değiştirildi */}
       </div>
-      <ul>
-        {availableDates.map((date) => (
-          <li key={date.id}>
-            {date.availableDate} - Doctor ID: {date.doctorId}
-            <button onClick={() => handleUpdate(date.id)}>Edit</button>
-            <button onClick={() => handleDelete(date.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <table> {/* Değiştirildi */}
+        <thead> {/* Değiştirildi */}
+          <tr> {/* Değiştirildi */}
+            <th>Date</th> {/* Değiştirildi */}
+            <th>Doctor ID</th> {/* Değiştirildi */}
+            <th>Action</th> {/* Değiştirildi */}
+          </tr> {/* Değiştirildi */}
+        </thead> {/* Değiştirildi */}
+        <tbody> {/* Değiştirildi */}
+          {availableDates.map((date) => (
+            <tr key={date.id}> {/* Değiştirildi */}
+              <td>{date.availableDate}</td> {/* Değiştirildi */}
+              <td>{date.doctorId}</td> {/* Değiştirildi */}
+              <td> {/* Değiştirildi */}
+                <button className="btn-primary mx-2" onClick={() => handleUpdate(date.id)}>Edit</button> {/* Değiştirildi */}
+                <button className="btn-primary mx-2" onClick={() => handleDelete(date.id)}>Delete</button> {/* Değiştirildi */}
+              </td> {/* Değiştirildi */}
+            </tr> {/* Değiştirildi */}
+          ))}
+        </tbody> {/* Değiştirildi */}
+      </table> {/* Değiştirildi */}
     </div>
   );
 }
