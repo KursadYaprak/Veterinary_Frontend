@@ -1,1 +1,58 @@
+.available-date-list-container {
+    margin: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.available-date-list-container h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.available-date-list-container input {
+    margin-right: 10px;
+}
+
+.available-date-list-container .add-button {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.available-date-list-container .add-button:hover {
+    background-color: #333;
+}
+
+.available-date-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.available-date-list li {
+    margin-bottom: 10px;
+}
+
+.available-date-list li button {
+    margin-left: 10px;
+}
+
+.available-date-list li .edit-button,
+.available-date-list li .delete-button {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.available-date-list li .edit-button:hover,
+.available-date-list li .delete-button:hover {
+    background-color: #333;
+}
 
