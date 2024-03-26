@@ -23,15 +23,7 @@ function AvailableDateList() {
 
 
 
-    const fetchDates = async () => {
-        try {
-            const fetchedDates = await AvailableDateService.getAllDates();
-            setDates(fetchedDates);
-        } catch (error) {
-            console.error('Müsait günler alınırken bir hata oluştu:', error);
-            setDates([]); // Hata durumunda boş dizi atayarak hata yönetimi sağlanıyor.
-        }
-    };
+
     
 
   /*  const handleAddDate = async () => {
