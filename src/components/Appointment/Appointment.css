@@ -4,7 +4,7 @@
     background-color: #fff;
     width: 90%;
     max-width: 1150px;
-    text-align: center; /* İçeriği ortalamak için */
+    text-align: start; /* İçeriği ortalamak için */
 }
 
 .appointment-container h2 {
@@ -69,7 +69,7 @@
 }
 
 .appointment-update-form .form-actions {
-    text-align: center;
+    text-align: start;
 }
 
 .appointment-update-form input,
