@@ -16,7 +16,8 @@
     border-collapse: collapse;
 }
 
-.appointment-table th, .appointment-table td {
+.appointment-table th,
+.appointment-table td {
     text-align: left;
     padding: 8px;
     border-bottom: 1px solid #eee;
@@ -34,39 +35,39 @@
     color: #555;
 }
 
-button {
+.appointment-container button {
     padding: 10px;
     margin: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #2D9596; 
+    background-color: #2D9596;
     color: white;
 }
 
-button:hover {
+.appointment-container button:hover {
     background-color: #2D9596;
 }
 
 .appointment-update-form {
-    width: 500px;
-    /* margin: 0 auto; Remove this line */
+    width: 90%; /* Yeni form genişliği ayarı */
+    max-width: 500px; /* Formun maksimum genişliği */
+    margin: auto; /* Formun ortalanması */
     padding: 20px;
     border: 1px solid #ccc;
 }
 
-
-.form-group {
+.appointment-update-form .form-group {
     margin-bottom: 15px;
 }
 
-.form-group label {
+.appointment-update-form .form-group label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.form-actions {
+.appointment-update-form .form-actions {
     text-align: center;
 }
 
@@ -82,10 +83,12 @@ button:hover {
 .appointment-table td:nth-child(1) {
     width: 5%; /* ID */
 }
+
 .appointment-table td:nth-child(2),
 .appointment-table td:nth-child(3) {
     width: 15%; /* Tarih ve Saat */
 }
+
 .appointment-table td:nth-child(4),
 .appointment-table td:nth-child(6) {
     width: 10%; /* ID'ler */
