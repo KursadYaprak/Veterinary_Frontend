@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { getReports, createReport, updateReport, deleteReport } from '../../services/ReportService';
 
-const BASE_URL = 'http://localhost:3000/api/v1/report'; 
+const BASE_URL = 'https://final-project-patika.onrender.com/api/v1/report'; 
 
 const ReportList = () => {
   const [reports, setReports] = useState([]);
