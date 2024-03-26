@@ -14,10 +14,14 @@ function AvailableDateList() {
     const [doctors, setDoctors] = useState([]); 
     
 
+
+
     useEffect(() => {
         fetchDates();
         fetchDoctors();
     }, []);
+
+
 
     const fetchDates = async () => {
         try {
@@ -28,8 +32,22 @@ function AvailableDateList() {
             setDates([]); // Hata durumunda boş dizi atayarak hata yönetimi sağlanıyor.
         }
     };
+    
+
+  /*  const handleAddDate = async () => {
+        try {
+            await AvailableDateService.createDateWithDoctor({ date: newDate.date }, doctorId);
+    
+            setNewDate({ date: '' });
+            setDoctorId('');
+            fetchDates();
+        } catch (error) {
+            console.error('Müsait gün eklenirken hata:', error);
+        }
+    }; */
 
     const handleAddDate = async () => {
+
         try {
             await AvailableDateService.createDateWithDoctor(newDate, newDate.doctorId);
             setNewDate({ date: '', doctorId: '' });
@@ -38,6 +56,7 @@ function AvailableDateList() {
             console.error('Müsait gün eklenirken hata:', error);
         }
     };
+    
 
     const handleUpdateDate = async () => {
         try {
@@ -75,6 +94,7 @@ function AvailableDateList() {
             console.error('Error creating available date', error);
         }
     };
+    
 
     const handleEditClick = (date) => {
         setEditingDate({ ...date });
@@ -96,8 +116,11 @@ function AvailableDateList() {
     };
 
     return (
+        
         <div className="available-date-list-container">
+
             <h1 className="mt-3 text-center">Müsait Günler Listesi</h1>
+   
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -108,7 +131,7 @@ function AvailableDateList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {Array.isArray(dates) && dates.map(date => (
+                    {dates.map(date => (
                         <tr key={date.id}>
                             <td>{date.id}</td>
                             <td>{editMode && editingDate && editingDate.id === date.id ? (
@@ -137,6 +160,24 @@ function AvailableDateList() {
                 </tbody>
             </table>
 
+
+
+<div className="mb-3">
+    <input 
+        type="date" 
+        value={newDate.date} 
+        onChange={(e) => setNewDate({ ...newDate, date: e.target.value })} 
+        placeholder="Tarih" 
+    />
+    <input 
+        type="number" 
+        value={doctorId} 
+        onChange={(e) => setDoctorId(e.target.value)}
+        placeholder="Doktor ID" 
+    />
+    <button className="btn btn-primary mx-2"  style={{ backgroundColor:  "green" }} onClick={handleAddDate}>Ekle</button>
+</div>
+
             <div className="mb-3">
                 <input 
                     type="date" 
@@ -146,13 +187,50 @@ function AvailableDateList() {
                 />
                 <input 
                     type="number" 
-                    value={doctorId} 
-                    onChange={(e) => setDoctorId(e.target.value)}
+                    value={newDate.doctorId} 
+                    onChange={(e) => setNewDate({ ...newDate, doctorId: e.target.value })}
                     placeholder="Doktor ID" 
                 />
-                <button className="btn btn-primary mx-2"  style={{ backgroundColor:  "green" }} onClick={handleAddDate}>Ekle</button>
+                <button className="btn btn-primary mx-2" style={{ backgroundColor:  "#2D9596" }} onClick={handleAddDate}>Ekle</button>
             </div>
 
-            <div className="mb-3">
-                <input 
-                   
+             {/* New Form for Adding Available Dates */}
+        <div>
+        <h2>Add New Available Date</h2>
+    <form onSubmit={handleSubmit}>
+    <input 
+        type="number" 
+        value={doctorId} 
+        onChange={(e) => setDoctorId(e.target.value)}
+        placeholder="Doktor ID" 
+    />
+        <div>
+        <label>Doctor:</label>
+        <select value={doctorId} onChange={(e) => setDoctorId(e.target.value)}>
+            <option value="">Select a Doctor</option>
+            {doctors.map((doctor) => (
+                <option key={doctor.id} value={doctor.id}>
+                    {doctor.name}
+                </option>
+            ))}
+            </select>
+        </div>
+        <div>
+            <label>Date:</label>
+            <input 
+                type="date" 
+                value={newDate} 
+                onChange={(e) => setNewDate(e.target.value)} 
+            />
+        </div>
+        <button type="submit">Add Date</button>
+    </form>
+        </div>
+
+
+        </div>
+    );
+
+}
+
+export default AvailableDateList;
