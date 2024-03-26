@@ -1,5 +1,5 @@
 .appointment-container {
-    margin: 20px;
+    margin: 20px auto; /* Dikey (üst ve alt) boşlukları 20px, yatayı otomatik ayarla */
     padding: 10px;
     background-color: #fff;
     border-radius: 8px;
@@ -7,6 +7,7 @@
     width: 90%; /* Genişlik ayarlayabilirsiniz */
     max-width: 1150px; /* Max genişlik ayarlayabilirsiniz */
 }
+
 
 .appointment-container h2 {
     color: #333;
