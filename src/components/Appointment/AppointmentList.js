@@ -20,20 +20,42 @@ function AppointmentList() {
     const [newDate, setNewDate] = useState({ date: '' });
     const [doctorId, setDoctorId] = useState('');
     const [animalId, setAnimalId] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    
+    
+const parseDate = (dateTime) => {
+    if (!dateTime) {
+        return { valid: false, date: null };
+    }
 
+    try {
+        const [datePart, timePart] = dateTime.split(' ');
+        const [day, month, year] = datePart.split('/');
+        return { valid: true, date: new Date(`${year}-${month}-${day}T${timePart}`) };
+    } catch (error) {
+        console.error('Tarih parse edilirken hata:', error);
+        return { valid: false, date: null };
+    }
+};
  
+   const filteredAppointments = appointments.filter(appointment => {
+        const appointmentDateTime = parseDate(appointment.appointmentDate).date;
 
-    const filteredAppointments = appointments.filter(appointment => {
+        const isWithinRange = startDate && endDate
+      ? appointmentDateTime >= new Date(startDate) && appointmentDateTime <= new Date(endDate)
+      : true; // Include all dates if no range is set
+
+
         const matchesDoctor = searchTermDoctor
           ? appointment.doctorName.toLowerCase().includes(searchTermDoctor.toLowerCase())
           : true;
         const matchesAnimal = searchTerm
           ? appointment.animalName.toLowerCase().includes(searchTerm.toLowerCase())
           : true;
-        return matchesDoctor && matchesAnimal;
-      });
+        return matchesDoctor && matchesAnimal && isWithinRange;
+      }); 
       
-
 
     const handleUpdate = (id) => {
         const appointmentToUpdate = appointments.find(appointment => appointment.id === id);
@@ -150,19 +172,7 @@ function AppointmentList() {
         setNewAppointment({ ...newAppointment, [e.target.name]: e.target.value });
     };
 
-   /* const handleSubmit = (e) => {
-        e.preventDefault();
-        fetch(`/api/v1/appointmentDate/create-with-doctor-and-animal/${doctorId}/${animalId}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ appointmentDate: newAppointment.appointmentDate })
-        })
-            .then(() => {
-        
-                fetchAppointments(); 
-            })
-            .catch(error => console.error('Error adding appointment', error));
-    };*/
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -224,25 +234,27 @@ function AppointmentList() {
     };
     
 
-    const parseDate = (dateTime) => {
-        if (!dateTime) {
-            return { valid: false, date: null };
-        }
-
-        try {
-            const [datePart, timePart] = dateTime.split(' ');
-            const [day, month, year] = datePart.split('/');
-            return { valid: true, date: new Date(`${year}-${month}-${day}T${timePart}`) };
-        } catch (error) {
-            console.error('Tarih parse edilirken hata:', error);
-            return { valid: false, date: null };
-        }
-    };
-
     return (
         <div className="appointment-container">
 
           {/* Search Input */}
+
+          {/* Tarih filtresi için yeni inputlar */}
+          <label htmlFor="start-date">Başlangıç Tarihi:</label>
+            <input
+                type="date"
+                id="start-date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+            />
+
+            <label htmlFor="end-date">Bitiş Tarihi:</label>
+            <input
+                type="date"
+                id="end-date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+            />
 
           <label htmlFor="doctor-search">Search by Doctor Name:</label>
             <input
@@ -313,23 +325,7 @@ function AppointmentList() {
                 <button type="submit">Ekle</button>
             </form>
             
-           {/* <form onSubmit={handleSubmit}>
-                <input type="datetime-local" name="appointmentDate" value={newAppointment.appointmentDate} onChange={handleInputChange} required />
-                <input type="number" name="animalId" placeholder="Hayvan ID" value={newAppointment.animalId} onChange={handleInputChange} required />
-                <input type="number" name="doctorId" placeholder="Doktor ID" value={newAppointment.doctorId} onChange={handleInputChange} required />
-                <button type="submit">Ekle</button>
-                </form> */}
 
-         {/*    <h2>Update Appointment</h2>
-        <form onSubmit={handleUpdateSubmit}>
-            <input type="text" name="id" value={selectedAppointment?.id || ''} disabled /> {/* Read-only ID field 
-            <input type="datetime-local" name="appointmentDate" value={selectedAppointment?.appointmentDate || ''} onChange={handleUpdateInputChange}  />
-
-            <input type="number" name="animalId" value={selectedAppointment?.animalId || ''} onChange={handleUpdateInputChange} required />
-            <input type="number" name="doctorId" value={selectedAppointment?.doctorId || ''} onChange={handleUpdateInputChange} required />
-            <button type="submit" disabled={!selectedAppointment}>Update</button> 
-            <button type="reset" onClick={() => setSelectedAppointment(null)}>Reset</button>
-        </form> */ }
 
         <h2>Update Appointment</h2>
         <form onSubmit={handleUpdateSubmit} className="appointment-update-form"> 
@@ -339,12 +335,7 @@ function AppointmentList() {
         </div>
 
 
-    {/*    <input 
-        type="date" 
-        value={newDate.date} 
-        onChange={(e) => setNewDate({ ...newDate, date: e.target.value })} 
-        placeholder="Tarih" 
-    /> */}
+  
 
 
 
